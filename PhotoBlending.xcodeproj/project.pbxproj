@@ -7,13 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B27218E122DB464B004598C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27218E022DB464B004598C5 /* AppDelegate.swift */; };
-		B27218E322DB464B004598C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27218E222DB464B004598C5 /* ViewController.swift */; };
+		B227DF6F22F2E708008744AD /* PickerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B227DF6E22F2E708008744AD /* PickerViewDataSource.swift */; };
 		B27218E622DB464B004598C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B27218E422DB464B004598C5 /* Main.storyboard */; };
 		B27218E822DB464D004598C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B27218E722DB464D004598C5 /* Assets.xcassets */; };
 		B27218EB22DB464D004598C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B27218E922DB464D004598C5 /* LaunchScreen.storyboard */; };
 		B27218F622DB464D004598C5 /* PhotoBlendingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27218F522DB464D004598C5 /* PhotoBlendingTests.swift */; };
 		B272190122DB464D004598C5 /* PhotoBlendingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B272190022DB464D004598C5 /* PhotoBlendingUITests.swift */; };
+		B2BFCF1D22F2D67D00EE99BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27218E022DB464B004598C5 /* AppDelegate.swift */; };
+		B2BFCF1E22F2D67D00EE99BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27218E222DB464B004598C5 /* ViewController.swift */; };
+		B2BFCF1F22F2D67D00EE99BB /* BlendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25E999D22E47821001DBC7E /* BlendingViewController.swift */; };
+		B2BFCF2022F2D67D00EE99BB /* BlendingMetalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25E99A122E48DD5001DBC7E /* BlendingMetalViewController.swift */; };
+		B2BFCF2122F2D67D00EE99BB /* MetalRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D9ECB922E7264F0094B66B /* MetalRenderer.swift */; };
+		B2BFCF2222F2D67D00EE99BB /* MetalFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C946222F1A52E0035B616 /* MetalFactory.swift */; };
+		B2BFCF2322F2D67D00EE99BB /* blending.metal in Sources */ = {isa = PBXBuildFile; fileRef = B25C945F22F19FCB0035B616 /* blending.metal */; };
+		B2BFCF2522F2D67D00EE99BB /* Blending.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25C946422F1A8260035B616 /* Blending.swift */; };
+		B2BFCF2722F2D7B000EE99BB /* shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = B2BFCF2622F2D7B000EE99BB /* shader.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +42,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B227DF6E22F2E708008744AD /* PickerViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewDataSource.swift; sourceTree = "<group>"; };
+		B25C945F22F19FCB0035B616 /* blending.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = blending.metal; sourceTree = "<group>"; };
+		B25C946122F1A0000035B616 /* blending.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = blending.h; sourceTree = "<group>"; };
+		B25C946222F1A52E0035B616 /* MetalFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalFactory.swift; sourceTree = "<group>"; };
+		B25C946422F1A8260035B616 /* Blending.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blending.swift; sourceTree = "<group>"; };
+		B25E999D22E47821001DBC7E /* BlendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlendingViewController.swift; sourceTree = "<group>"; };
+		B25E99A122E48DD5001DBC7E /* BlendingMetalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlendingMetalViewController.swift; sourceTree = "<group>"; };
 		B27218DD22DB464B004598C5 /* PhotoBlending.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoBlending.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27218E022DB464B004598C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B27218E222DB464B004598C5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +62,8 @@
 		B27218FC22DB464D004598C5 /* PhotoBlendingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoBlendingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B272190022DB464D004598C5 /* PhotoBlendingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBlendingUITests.swift; sourceTree = "<group>"; };
 		B272190222DB464D004598C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2BFCF2622F2D7B000EE99BB /* shader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = shader.metal; sourceTree = "<group>"; };
+		B2D9ECB922E7264F0094B66B /* MetalRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalRenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +91,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B227DF7022F2EBB8008744AD /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B27218E222DB464B004598C5 /* ViewController.swift */,
+				B25E999D22E47821001DBC7E /* BlendingViewController.swift */,
+				B25E99A122E48DD5001DBC7E /* BlendingMetalViewController.swift */,
+				B227DF6E22F2E708008744AD /* PickerViewDataSource.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B227DF7122F2EBD5008744AD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B27218E422DB464B004598C5 /* Main.storyboard */,
+				B27218E922DB464D004598C5 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B227DF7222F2EBEF008744AD /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				B2D9ECB922E7264F0094B66B /* MetalRenderer.swift */,
+				B25C946222F1A52E0035B616 /* MetalFactory.swift */,
+				B25C946422F1A8260035B616 /* Blending.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
 		B27218D422DB464B004598C5 = {
 			isa = PBXGroup;
 			children = (
@@ -98,10 +145,11 @@
 			isa = PBXGroup;
 			children = (
 				B27218E022DB464B004598C5 /* AppDelegate.swift */,
-				B27218E222DB464B004598C5 /* ViewController.swift */,
-				B27218E422DB464B004598C5 /* Main.storyboard */,
+				B227DF7022F2EBB8008744AD /* ViewControllers */,
+				B227DF7122F2EBD5008744AD /* Views */,
+				B227DF7222F2EBEF008744AD /* UseCase */,
+				B2BFCF1A22F2CCB500EE99BB /* Shader */,
 				B27218E722DB464D004598C5 /* Assets.xcassets */,
-				B27218E922DB464D004598C5 /* LaunchScreen.storyboard */,
 				B27218EC22DB464D004598C5 /* Info.plist */,
 			);
 			path = PhotoBlending;
@@ -123,6 +171,16 @@
 				B272190222DB464D004598C5 /* Info.plist */,
 			);
 			path = PhotoBlendingUITests;
+			sourceTree = "<group>";
+		};
+		B2BFCF1A22F2CCB500EE99BB /* Shader */ = {
+			isa = PBXGroup;
+			children = (
+				B2BFCF2622F2D7B000EE99BB /* shader.metal */,
+				B25C945F22F19FCB0035B616 /* blending.metal */,
+				B25C946122F1A0000035B616 /* blending.h */,
+			);
+			path = Shader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,8 +314,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B27218E322DB464B004598C5 /* ViewController.swift in Sources */,
-				B27218E122DB464B004598C5 /* AppDelegate.swift in Sources */,
+				B2BFCF1D22F2D67D00EE99BB /* AppDelegate.swift in Sources */,
+				B227DF6F22F2E708008744AD /* PickerViewDataSource.swift in Sources */,
+				B2BFCF1E22F2D67D00EE99BB /* ViewController.swift in Sources */,
+				B2BFCF1F22F2D67D00EE99BB /* BlendingViewController.swift in Sources */,
+				B2BFCF2022F2D67D00EE99BB /* BlendingMetalViewController.swift in Sources */,
+				B2BFCF2122F2D67D00EE99BB /* MetalRenderer.swift in Sources */,
+				B2BFCF2222F2D67D00EE99BB /* MetalFactory.swift in Sources */,
+				B2BFCF2322F2D67D00EE99BB /* blending.metal in Sources */,
+				B2BFCF2722F2D7B000EE99BB /* shader.metal in Sources */,
+				B2BFCF2522F2D67D00EE99BB /* Blending.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
