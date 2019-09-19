@@ -68,3 +68,203 @@ float3 blendScreen(float3 base, float3 blend) {
 float3 blendScreen(float3 base, float3 blend, float opacity) {
     return (blendScreen(base, blend) * opacity + base * (1.0 - opacity));
 }
+
+
+float blendReflect(float base, float blend) {
+    return (blend==1.0)?blend:min(base*base/(1.0-blend),1.0);
+}
+
+float3 blendReflect(float3 base, float3 blend) {
+    return float3(blendReflect(base.r,blend.r),blendReflect(base.g,blend.g),blendReflect(base.b,blend.b));
+}
+
+float3 blendReflect(float3 base, float3 blend, float opacity) {
+    return (blendReflect(base, blend) * opacity + base * (1.0 - opacity));
+}
+
+float blendColorBurn(float base, float blend) {
+    return (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);
+}
+
+float3 blendColorBurn(float3 base, float3 blend) {
+    return float3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));
+}
+
+float3 blendColorBurn(float3 base, float3 blend, float opacity) {
+    return (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));
+}
+
+float blendColorDodge(float base, float blend) {
+    return (blend==1.0)?blend:min(base/(1.0-blend),1.0);
+}
+
+float3 blendColorDodge(float3 base, float3 blend) {
+    return float3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));
+}
+
+float3 blendColorDodge(float3 base, float3 blend, float opacity) {
+    return (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));
+}
+
+float3 blendDifference(float3 base, float3 blend) {
+    return abs(base-blend);
+}
+
+float3 blendDifference(float3 base, float3 blend, float opacity) {
+    return (blendDifference(base, blend) * opacity + base * (1.0 - opacity));
+}
+
+float3 blendExclusion(float3 base, float3 blend) {
+    return base+blend-2.0*base*blend;
+}
+
+float3 blendExclusion(float3 base, float3 blend, float opacity) {
+    return (blendExclusion(base, blend) * opacity + base * (1.0 - opacity));
+}
+
+float3 blendGlow(float3 base, float3 blend) {
+    return blendReflect(blend,base);
+}
+
+float3 blendGlow(float3 base, float3 blend, float opacity) {
+    return (blendGlow(base, blend) * opacity + base * (1.0 - opacity));
+}
+
+
+float3 blendHardLight(float3 base, float3 blend) {
+    return blendOverlay(blend,base);
+}
+
+float3 blendHardLight(float3 base, float3 blend, float opacity) {
+    return (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));
+}
+
+
+float blendLighten(float base, float blend) {
+    return max(blend,base);
+}
+
+float3 blendLighten(float3 base, float3 blend) {
+    return float3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));
+}
+
+float3 blendLighten(float3 base, float3 blend, float opacity) {
+    return (blendLighten(base, blend) * opacity + base * (1.0 - opacity));
+}
+
+float blendLinearBurn(float base, float blend) {
+    // Note : Same implementation as BlendSubtractf
+    return max(base+blend-1.0,0.0);
+}
+
+float3 blendLinearBurn(float3 base, float3 blend) {
+    // Note : Same implementation as BlendSubtract
+    return max(base+blend-float3(1.0),float3(0.0));
+}
+
+float3 blendLinearBurn(float3 base, float3 blend, float opacity) {
+    return (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));
+}
+
+float blendLinearDodge(float base, float blend) {
+    // Note : Same implementation as BlendAddf
+    return min(base+blend,1.0);
+}
+
+float3 blendLinearDodge(float3 base, float3 blend) {
+    // Note : Same implementation as BlendAdd
+    return min(base+blend,float3(1.0));
+}
+
+float3 blendLinearDodge(float3 base, float3 blend, float opacity) {
+    return (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));
+}
+
+float blendLinearLight(float base, float blend) {
+    return blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));
+}
+
+float3 blendLinearLight(float3 base, float3 blend) {
+    return float3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));
+}
+
+float3 blendLinearLight(float3 base, float3 blend, float opacity) {
+    return (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));
+}
+
+float3 blendNegation(float3 base, float3 blend) {
+    return float3(1.0)-abs(float3(1.0)-base-blend);
+}
+
+float3 blendNegation(float3 base, float3 blend, float opacity) {
+    return (blendNegation(base, blend) * opacity + base * (1.0 - opacity));
+}
+
+float3 blendPhoenix(float3 base, float3 blend) {
+    return min(base,blend)-max(base,blend)+float3(1.0);
+}
+
+float3 blendPhoenix(float3 base, float3 blend, float opacity) {
+    return (blendPhoenix(base, blend) * opacity + base * (1.0 - opacity));
+}
+
+float blendPinLight(float base, float blend) {
+    return (blend<0.5)?blendDarken(base,(2.0*blend)):blendLighten(base,(2.0*(blend-0.5)));
+}
+
+float3 blendPinLight(float3 base, float3 blend) {
+    return float3(blendPinLight(base.r,blend.r),blendPinLight(base.g,blend.g),blendPinLight(base.b,blend.b));
+}
+
+float3 blendPinLight(float3 base, float3 blend, float opacity) {
+    return (blendPinLight(base, blend) * opacity + base * (1.0 - opacity));
+}
+
+float blendVividLight(float base, float blend) {
+    return (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));
+}
+
+float3 blendVividLight(float3 base, float3 blend) {
+    return float3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));
+}
+
+float3 blendVividLight(float3 base, float3 blend, float opacity) {
+    return (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));
+}
+
+
+float blendHardMix(float base, float blend) {
+    return (blendVividLight(base,blend)<0.5)?0.0:1.0;
+}
+
+float3 blendHardMix(float3 base, float3 blend) {
+    return float3(blendHardMix(base.r,blend.r),blendHardMix(base.g,blend.g),blendHardMix(base.b,blend.b));
+}
+
+float3 blendHardMix(float3 base, float3 blend, float opacity) {
+    return (blendHardMix(base, blend) * opacity + base * (1.0 - opacity));
+}
+
+float blendSubstract(float base, float blend) {
+    return max(base+blend-1.0,0.0);
+}
+
+float3 blendSubstract(float3 base, float3 blend) {
+    return max(base+blend-float3(1.0),float3(0.0));
+}
+
+float3 blendSubstract(float3 base, float3 blend, float opacity) {
+    return (blendSubstract(base, blend) * opacity + blend * (1.0 - opacity));
+}
+
+float blendSubtract(float base, float blend) {
+    return max(base+blend-1.0,0.0);
+}
+
+float3 blendSubtract(float3 base, float3 blend) {
+    return max(base+blend-float3(1.0),float3(0.0));
+}
+
+float3 blendSubtract(float3 base, float3 blend, float opacity) {
+    return (blendSubtract(base, blend) * opacity + base * (1.0 - opacity));
+}

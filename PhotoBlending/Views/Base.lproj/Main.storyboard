@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sFq-Yv-oLI">
-    <device id="retina5_9" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PhotoBlending" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="aso-9J-5jd">
-                                <rect key="frame" x="67.666666666666686" y="236" width="240" height="394"/>
+                                <rect key="frame" x="87" y="203" width="240" height="394"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghf-Fg-pfc">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
@@ -85,14 +85,14 @@
             <objects>
                 <viewController storyboardIdentifier="blend_view" id="3TC-s0-y50" customClass="BlendingViewController" customModule="PhotoBlending" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RMJ-sr-I0m">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mLu-ek-zg9">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                             </imageView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="1dc-xD-Rmi">
-                                <rect key="frame" x="0.0" y="748" width="379" height="31"/>
+                                <rect key="frame" x="0.0" y="706" width="418" height="31"/>
                                 <connections>
                                     <action selector="sliderValueChanged:" destination="3TC-s0-y50" eventType="valueChanged" id="GBx-W6-2vG"/>
                                 </connections>
@@ -124,7 +124,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sFq-Yv-oLI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RCk-x3-Smy">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -141,20 +141,14 @@
             <objects>
                 <viewController storyboardIdentifier="metalViewController" id="KTp-5g-82o" customClass="BlendingMetalViewController" customModule="PhotoBlending" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eI2-sd-2c0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mtkView contentMode="scaleToFill" colorPixelFormat="BGRA8Unorm" depthStencilPixelFormat="Depth32Float" translatesAutoresizingMaskIntoConstraints="NO" id="vQ4-8V-yEw">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                             </mtkView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ZOw-Eu-NA5">
-                                <rect key="frame" x="-2" y="748" width="379" height="31"/>
-                                <connections>
-                                    <action selector="sliderValueChanged:" destination="KTp-5g-82o" eventType="valueChanged" id="oir-Pt-lpb"/>
-                                </connections>
-                            </slider>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8eS-9y-KVj">
-                                <rect key="frame" x="213" y="44" width="162" height="216"/>
+                                <rect key="frame" x="252" y="20" width="162" height="216"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="162" id="ozV-aA-a07"/>
                                 </constraints>
@@ -162,18 +156,56 @@
                                     <outlet property="delegate" destination="KTp-5g-82o" id="C6h-Ue-W6P"/>
                                 </connections>
                             </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r98-Nk-drv">
+                                <rect key="frame" x="336" y="591" width="38" height="30"/>
+                                <state key="normal" title="Swap"/>
+                                <connections>
+                                    <action selector="swapButtonEvent:" destination="KTp-5g-82o" eventType="touchUpInside" id="gPX-up-6pI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftu-K4-ba6">
+                                <rect key="frame" x="20" y="591" width="35" height="30"/>
+                                <state key="normal" title="color"/>
+                                <connections>
+                                    <action selector="colorButtonEvent:" destination="KTp-5g-82o" eventType="touchUpInside" id="r0I-IF-PnK"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hyY-Nc-9n5">
+                                <rect key="frame" x="120" y="593" width="175" height="29"/>
+                                <segments>
+                                    <segment title="Background"/>
+                                    <segment title="Foreground"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControl:" destination="KTp-5g-82o" eventType="valueChanged" id="3tf-BK-viJ"/>
+                                </connections>
+                            </segmentedControl>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ZOw-Eu-NA5">
+                                <rect key="frame" x="-2" y="661" width="418" height="31"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="KTp-5g-82o" eventType="valueChanged" id="oir-Pt-lpb"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="r98-Nk-drv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hyY-Nc-9n5" secondAttribute="trailing" constant="8" symbolic="YES" id="3k1-td-QfE"/>
                             <constraint firstItem="vQ4-8V-yEw" firstAttribute="top" secondItem="tVQ-cT-QQ9" secondAttribute="top" id="7jg-n0-3PG"/>
+                            <constraint firstItem="hyY-Nc-9n5" firstAttribute="top" secondItem="ftu-K4-ba6" secondAttribute="bottom" constant="-28" id="9al-Rl-wzZ"/>
                             <constraint firstItem="vQ4-8V-yEw" firstAttribute="width" secondItem="tVQ-cT-QQ9" secondAttribute="width" id="APX-JP-IJM"/>
+                            <constraint firstItem="tVQ-cT-QQ9" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ftu-K4-ba6" secondAttribute="trailing" symbolic="YES" id="J91-Hh-kBs"/>
+                            <constraint firstItem="hyY-Nc-9n5" firstAttribute="leading" secondItem="tVQ-cT-QQ9" secondAttribute="leading" constant="120" id="OxB-QN-OVy"/>
                             <constraint firstItem="ZOw-Eu-NA5" firstAttribute="width" secondItem="tVQ-cT-QQ9" secondAttribute="width" id="V2P-Pe-0x3"/>
                             <constraint firstItem="tVQ-cT-QQ9" firstAttribute="trailing" secondItem="8eS-9y-KVj" secondAttribute="trailing" id="XFM-iH-Ix7"/>
+                            <constraint firstItem="tVQ-cT-QQ9" firstAttribute="trailing" secondItem="r98-Nk-drv" secondAttribute="trailing" constant="40" id="Xgs-ib-lbm"/>
                             <constraint firstItem="vQ4-8V-yEw" firstAttribute="height" secondItem="tVQ-cT-QQ9" secondAttribute="height" id="ckf-9E-dbK"/>
+                            <constraint firstItem="ftu-K4-ba6" firstAttribute="top" secondItem="tVQ-cT-QQ9" secondAttribute="top" constant="571" id="jC8-wz-gSw"/>
                             <constraint firstItem="8eS-9y-KVj" firstAttribute="top" secondItem="tVQ-cT-QQ9" secondAttribute="top" id="jIq-83-drc"/>
                             <constraint firstItem="vQ4-8V-yEw" firstAttribute="leading" secondItem="tVQ-cT-QQ9" secondAttribute="leading" id="jJL-Xt-Dsc"/>
-                            <constraint firstItem="tVQ-cT-QQ9" firstAttribute="bottom" secondItem="ZOw-Eu-NA5" secondAttribute="bottom" id="q9J-1b-EU9"/>
+                            <constraint firstItem="hyY-Nc-9n5" firstAttribute="bottom" secondItem="r98-Nk-drv" secondAttribute="bottom" id="lMP-h3-KIY"/>
+                            <constraint firstItem="tVQ-cT-QQ9" firstAttribute="bottom" secondItem="ZOw-Eu-NA5" secondAttribute="bottom" constant="45" id="q9J-1b-EU9"/>
                             <constraint firstItem="ZOw-Eu-NA5" firstAttribute="leading" secondItem="tVQ-cT-QQ9" secondAttribute="leading" id="xo4-Vd-jze"/>
+                            <constraint firstItem="ftu-K4-ba6" firstAttribute="leading" secondItem="tVQ-cT-QQ9" secondAttribute="leading" constant="20" id="zNJ-57-I1z"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tVQ-cT-QQ9"/>
                     </view>
@@ -184,7 +216,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hsw-Hh-2Bg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2802.898550724638" y="322.76785714285711"/>
+            <point key="canvasLocation" x="2802.4000000000001" y="322.16748768472905"/>
         </scene>
     </scenes>
 </document>

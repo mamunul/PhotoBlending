@@ -20,7 +20,7 @@ class MetalRenderer {
     var vertexFunction:MTLFunction?
     var vertexBuffer:MTLBuffer?
     var indexCount = 0
-    var transparency:[Float] = [0]
+    var transparency:[Float] = [0.0,1.0,1.0,0.0,0.0,0.0,0.0]
     var renderPipelineDescriptor:MTLRenderPipelineDescriptor?
     var textureBackground:MTLTexture?
     var textureForeground:MTLTexture?
@@ -63,8 +63,12 @@ class MetalRenderer {
         }
     }
     
-    func update(transparency:Float){
-        self.transparency = [transparency]
+    func update(imageForeground:CGImage,imageDepth:CGImage){
+        
+    }
+    
+    func update(transparency:[Float]){
+        self.transparency = transparency
     }
     
     func update(blending:BlendingMode){
@@ -93,7 +97,7 @@ class MetalRenderer {
         let renderCommandEncoder = commandBuffer?.makeRenderCommandEncoder(descriptor: metalView.currentRenderPassDescriptor!)
         
         renderCommandEncoder?.setRenderPipelineState(renderPipelineState!)
-        renderCommandEncoder?.setFragmentBytes(transparency, length: MemoryLayout.size(ofValue: transparency), index: 0)
+        renderCommandEncoder?.setFragmentBytes(transparency, length: MemoryLayout<Float>.size * transparency.count, index: 0)
 //        renderCommandEncoder?.setFragmentBytes(blendingMode, length: MemoryLayout.size(ofValue: blendingMode), index: 1)
         renderCommandEncoder?.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
         renderCommandEncoder?.setFragmentTexture(textureBackground, index: 0)

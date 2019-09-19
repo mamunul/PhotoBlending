@@ -42,8 +42,8 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigat
     
     @IBAction func goToBlendView(_ sender: Any) {
         if let blendingViewController = self.storyboard?.instantiateViewController(withIdentifier: "metalViewController") as? BlendingMetalViewController{
-            blendingViewController.imageBackground = imageA
-            blendingViewController.imageForeground = imageB
+            blendingViewController.backgroundImage = imageA
+            blendingViewController.foregroundImage = imageB
             
             self.navigationController?.present(blendingViewController, animated: true)
         }
