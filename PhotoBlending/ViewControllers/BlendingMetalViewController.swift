@@ -107,6 +107,7 @@ class BlendingMetalViewController: UIViewController,UIGestureRecognizerDelegate 
     }
     
     func setupRenderer(){
+        metalRenderer?.metalView = self.metalView
         metalRenderer?.setup()
         metalRenderer?.update(imageBackground: (backgroundImage?.cgImage)!, imageForeground: (foregroundImage?.cgImage)!)
         metalRenderer?.update(blending: BlendingMode.overlay)
@@ -155,7 +156,7 @@ extension BlendingMetalViewController:MTKViewDelegate{
     }
     
     func draw(in view: MTKView) {
-        metalRenderer?.render(metalView: view)
+        metalRenderer?.render()
         
     }
 }

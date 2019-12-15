@@ -22,7 +22,7 @@ vertex VertexOut basic_vertex(const device VertexIn* vertices [[buffer(0)]],uint
 
 fragment float4 basic_fragment(const VertexOut vertices [[stage_in]],
                                texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                               float4 lastColor [[ color(0)]], const device float *blendMode [[ buffer(0) ]]){
+                               const device float *blendMode [[ buffer(0) ]]){
     
     constexpr sampler textureSampler(coord::normalized,
                         address::repeat,
@@ -50,7 +50,7 @@ float2x3 getTexture(float2 textureCoordinate,const device float *extraData,textu
 
 fragment float4 overlay(const VertexOut vertices [[stage_in]],
                                texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                               float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+                               const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -68,7 +68,7 @@ fragment float4 overlay(const VertexOut vertices [[stage_in]],
 
 fragment float4 screen(const VertexOut vertices [[stage_in]],
                         texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                        float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+                        const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -85,7 +85,7 @@ fragment float4 screen(const VertexOut vertices [[stage_in]],
 
 fragment float4 softLight(const VertexOut vertices [[stage_in]],
                         texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                        float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+                        const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -104,7 +104,7 @@ fragment float4 softLight(const VertexOut vertices [[stage_in]],
 
 fragment float4 darken(const VertexOut vertices [[stage_in]],
                         texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                        float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+                        const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -121,7 +121,7 @@ fragment float4 darken(const VertexOut vertices [[stage_in]],
 
 fragment float4 reflect(const VertexOut vertices [[stage_in]],
  texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
- float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+ const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -138,7 +138,7 @@ fragment float4 reflect(const VertexOut vertices [[stage_in]],
 
 fragment float4 colorBurn(const VertexOut vertices [[stage_in]],
                  texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                 float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+                 const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -155,7 +155,7 @@ fragment float4 colorBurn(const VertexOut vertices [[stage_in]],
 
 fragment float4 colorDodge(const VertexOut vertices [[stage_in]],
                  texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                 float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+                 const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -172,7 +172,7 @@ fragment float4 colorDodge(const VertexOut vertices [[stage_in]],
 
 fragment float4 difference(const VertexOut vertices [[stage_in]],
                   texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                  float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+                  const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -189,7 +189,7 @@ fragment float4 difference(const VertexOut vertices [[stage_in]],
 
 fragment float4 exclusion(const VertexOut vertices [[stage_in]],
                   texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                  float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+                  const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -206,7 +206,7 @@ fragment float4 exclusion(const VertexOut vertices [[stage_in]],
 
 fragment float4 glow(const VertexOut vertices [[stage_in]],
                  texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                 float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+                 const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -223,7 +223,7 @@ fragment float4 glow(const VertexOut vertices [[stage_in]],
 
 fragment float4 hardLight(const VertexOut vertices [[stage_in]],
             texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-            float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+            const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -240,7 +240,7 @@ fragment float4 hardLight(const VertexOut vertices [[stage_in]],
 
 fragment float4 lighten(const VertexOut vertices [[stage_in]],
                  texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                 float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+                 const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -257,7 +257,7 @@ fragment float4 lighten(const VertexOut vertices [[stage_in]],
 
 fragment float4 linearBurn(const VertexOut vertices [[stage_in]],
                texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-               float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+               const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -274,7 +274,7 @@ fragment float4 linearBurn(const VertexOut vertices [[stage_in]],
 
 fragment float4 linearDodge(const VertexOut vertices [[stage_in]],
                   texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                  float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+                  const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -291,7 +291,7 @@ fragment float4 linearDodge(const VertexOut vertices [[stage_in]],
 
 fragment float4 linearLight(const VertexOut vertices [[stage_in]],
                    texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                   float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+                   const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -308,7 +308,7 @@ fragment float4 linearLight(const VertexOut vertices [[stage_in]],
 
 fragment float4 negation(const VertexOut vertices [[stage_in]],
                    texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                   float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+                   const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -325,7 +325,7 @@ fragment float4 negation(const VertexOut vertices [[stage_in]],
 
 fragment float4 phoenix(const VertexOut vertices [[stage_in]],
                 texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+                const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -342,7 +342,7 @@ fragment float4 phoenix(const VertexOut vertices [[stage_in]],
 
 fragment float4 pinLight(const VertexOut vertices [[stage_in]],
                texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-               float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+               const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -359,7 +359,7 @@ fragment float4 pinLight(const VertexOut vertices [[stage_in]],
 
 fragment float4 vividLight(const VertexOut vertices [[stage_in]],
                 texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+                const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -376,7 +376,7 @@ fragment float4 vividLight(const VertexOut vertices [[stage_in]],
 
 fragment float4 hardMix(const VertexOut vertices [[stage_in]],
                   texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                  float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+                  const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -393,7 +393,7 @@ fragment float4 hardMix(const VertexOut vertices [[stage_in]],
 
 fragment float4 substract(const VertexOut vertices [[stage_in]],
                texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-               float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+               const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     
@@ -410,7 +410,7 @@ fragment float4 substract(const VertexOut vertices [[stage_in]],
 
 fragment float4 subtract(const VertexOut vertices [[stage_in]],
                  texture2d<float>  textureBackground     [[ texture(0) ]], texture2d<float>  texureForeground     [[ texture(1) ]],
-                 float4 lastColor [[ color(0)]],const device float *extraData[[buffer(0)]]){
+                 const device float *extraData[[buffer(0)]]){
     
     float transparency = extraData[0];
     

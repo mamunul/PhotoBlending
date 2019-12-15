@@ -25,6 +25,7 @@ class MetalRenderer {
     var textureBackground:MTLTexture?
     var textureForeground:MTLTexture?
     var blendingMode:[Int] = [0]
+    var metalView:MTKView?
     
     init?() {
         metalDevice = MTLCreateSystemDefaultDevice()
@@ -42,22 +43,26 @@ class MetalRenderer {
         fragmentFunction = metalLibrary?.makeFunction(name: "basic_fragment")
         vertexFunction = metalLibrary?.makeFunction(name: "basic_vertex")
         
-        renderPipelineDescriptor = MetalFactory.build(vertexFunction: vertexFunction!, fragmentFunction: fragmentFunction!)
+        renderPipelineDescriptor = MetalFactory.build(mtkView: self.metalView!, vertexFunction: vertexFunction!, fragmentFunction: fragmentFunction!)
         
         (vertexBuffer,indexCount) = MetalFactory.loadVertexData(metalDevice: metalDevice!)
         
         do{
             renderPipelineState = try metalDevice!.makeRenderPipelineState(descriptor: renderPipelineDescriptor!)
         }catch{
-            
+            print(error)
         }
         
     }
     
     func update(imageBackground:CGImage, imageForeground:CGImage){
+        let textureLoaderOptions = [
+            MTKTextureLoader.Option.textureUsage: NSNumber(value: MTLTextureUsage.shaderRead.rawValue),
+            MTKTextureLoader.Option.textureStorageMode: NSNumber(value: MTLStorageMode.`private`.rawValue)
+        ]
         do{
-            textureBackground = try MTKTextureLoader.init(device: metalDevice!).newTexture(cgImage: imageBackground, options: nil)
-            textureForeground = try MTKTextureLoader.init(device: metalDevice!).newTexture(cgImage: imageForeground, options: nil)
+            textureBackground = try MTKTextureLoader.init(device: metalDevice!).newTexture(cgImage: imageBackground, options: textureLoaderOptions)
+            textureForeground = try MTKTextureLoader.init(device: metalDevice!).newTexture(cgImage: imageForeground, options: textureLoaderOptions)
         }catch{
             
         }
@@ -91,14 +96,18 @@ class MetalRenderer {
     }
  
     
-    func render(metalView:MTKView){
+    func render(){
         let commandBuffer = commandQueue?.makeCommandBuffer()
         
-        let renderCommandEncoder = commandBuffer?.makeRenderCommandEncoder(descriptor: metalView.currentRenderPassDescriptor!)
+        let (depth,stencil) = MetalFactory.allocateDepthStencilTextures(device: self.metalDevice!, metalKitView: metalView!)
+        let renderPassDescriptor = metalView!.currentRenderPassDescriptor
+        renderPassDescriptor!.depthAttachment.texture = depth
+        renderPassDescriptor!.stencilAttachment.texture = stencil
+        
+        let renderCommandEncoder = commandBuffer?.makeRenderCommandEncoder(descriptor: renderPassDescriptor!)
         
         renderCommandEncoder?.setRenderPipelineState(renderPipelineState!)
         renderCommandEncoder?.setFragmentBytes(transparency, length: MemoryLayout<Float>.size * transparency.count, index: 0)
-//        renderCommandEncoder?.setFragmentBytes(blendingMode, length: MemoryLayout.size(ofValue: blendingMode), index: 1)
         renderCommandEncoder?.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
         renderCommandEncoder?.setFragmentTexture(textureBackground, index: 0)
         renderCommandEncoder?.setFragmentTexture(textureForeground, index: 1)
@@ -106,7 +115,7 @@ class MetalRenderer {
         
         renderCommandEncoder?.endEncoding()
         
-        if let drawable = metalView.currentDrawable {
+        if let drawable = metalView?.currentDrawable {
             commandBuffer?.present(drawable)
         }
         

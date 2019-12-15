@@ -54,13 +54,23 @@ class MetalFactory {
         return (vertexBuffer,indices.count)
     }
     
-    class func build(vertexFunction:MTLFunction,fragmentFunction:MTLFunction)->MTLRenderPipelineDescriptor{
+    class func build(mtkView:MTKView, vertexFunction:MTLFunction,fragmentFunction:MTLFunction)->MTLRenderPipelineDescriptor{
+        
+        #if os(macOS) || targetEnvironment(simulator)
+        let depthPixelFormat = MTLPixelFormat.depth32Float_stencil8
+        let stencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
+        #else
+        let depthPixelFormat = MTLPixelFormat.depth32Float
+        let stencilPixelFormat = MTLPixelFormat.stencil8
+        #endif
         
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
         pipelineDescriptor.vertexFunction = vertexFunction
         pipelineDescriptor.fragmentFunction = fragmentFunction
-        pipelineDescriptor.depthAttachmentPixelFormat = MTLPixelFormat.depth32Float
-        pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+        pipelineDescriptor.depthAttachmentPixelFormat = depthPixelFormat
+        pipelineDescriptor.stencilAttachmentPixelFormat = stencilPixelFormat
+//        pipelineDescriptor.depthAttachmentPixelFormat = MTLPixelFormat.depth32Float
+        pipelineDescriptor.colorAttachments[0].pixelFormat = mtkView.colorPixelFormat
         pipelineDescriptor.colorAttachments[0].isBlendingEnabled = true
         
         pipelineDescriptor.colorAttachments[0].rgbBlendOperation = MTLBlendOperation.add
@@ -75,5 +85,36 @@ class MetalFactory {
     
         
         return pipelineDescriptor
+    }
+    
+    class func allocateDepthStencilTextures(device: MTLDevice,
+                                      metalKitView: MTKView) -> (depthTexture: MTLTexture, stencilTexture: MTLTexture) {
+        #if os(macOS) || targetEnvironment(simulator)
+        let depthPixelFormat = MTLPixelFormat.depth32Float_stencil8
+        let stencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
+        let storageMode = MTLStorageMode.private
+        #else
+        let depthPixelFormat = MTLPixelFormat.depth32Float
+        let stencilPixelFormat = MTLPixelFormat.stencil8
+        let storageMode = MTLStorageMode.shared
+        #endif
+        
+        let depthStencilTextureDescriptor = MTLTextureDescriptor()
+        depthStencilTextureDescriptor.textureType = MTLTextureType.type2D
+        depthStencilTextureDescriptor.width = Int(metalKitView.drawableSize.width)
+        depthStencilTextureDescriptor.height = Int(metalKitView.drawableSize.height)
+        depthStencilTextureDescriptor.usage = MTLTextureUsage.renderTarget
+        depthStencilTextureDescriptor.storageMode = storageMode
+        
+        depthStencilTextureDescriptor.pixelFormat = depthPixelFormat
+        let depthTexture = device.makeTexture(descriptor: depthStencilTextureDescriptor)!
+        var stencilTexture: MTLTexture
+        if depthPixelFormat != stencilPixelFormat {
+            depthStencilTextureDescriptor.pixelFormat = stencilPixelFormat
+            stencilTexture = device.makeTexture(descriptor: depthStencilTextureDescriptor)!
+        } else {
+            stencilTexture = depthTexture
+        }
+        return (depthTexture, stencilTexture)
     }
 }
